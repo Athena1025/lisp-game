@@ -4,7 +4,12 @@
 
 (defun game ()
   (sdl2:init :everything)
-  (let ((window (sdl2:create-window :w 400 :h 200)))
+  (let* ((window (sdl2:create-window :w 400 :h 200))
+         (renderer (sdl2:create-renderer window nil (list :accelerated :presentvsync))))
+    (sdl2:set-render-draw-color renderer 250 0 250 255)
+    (sdl2:render-clear renderer)
+    (sdl2:render-present renderer)
     (sleep 1)
+    (sdl2:destroy-renderer renderer)
     (sdl2:destroy-window window))
   (sdl2:quit))
